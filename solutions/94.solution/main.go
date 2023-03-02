@@ -6,24 +6,24 @@ import (
 
 type TreeNode = structures.TreeNode
 
-func inorderTraversalUsingLoop(root *TreeNode) []int {
+func inorderTraversalLoop(root *TreeNode) []int {
 	if root == nil {
 		return []int{}
 	}
 
 	nums := []int{}
-	stackTree := []*TreeNode{}
+	arrTree := []*TreeNode{}
 
-	for len(stackTree) != 0 || root != nil {
+	for len(arrTree) != 0 || root != nil {
 		if root != nil {
-			stackTree = append(stackTree, root)
+			arrTree = append(arrTree, root)
 			root = root.Left
 		} else {
-			index := len(stackTree) - 1
+			index := len(arrTree) - 1
 
 			if index >= 0 {
-				root = stackTree[index]
-				stackTree = stackTree[:index]
+				root = arrTree[index]
+				arrTree = arrTree[:index]
 			}
 
 			nums = append(nums, root.Val)

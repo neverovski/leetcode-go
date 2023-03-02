@@ -35,10 +35,22 @@ var cases = []testCase{
 	},
 }
 
-func TestInorderTraversalUsingLoop(t *testing.T) {
+func BenchmarkInorderTraversalLoop(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		inorderTraversalLoop(cases[0].in)
+	}
+}
+
+func BenchmarkInorderTraversalRecursive(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		inorderTraversalRecursive(cases[0].in)
+	}
+}
+
+func TestInorderTraversalLoop(t *testing.T) {
 	for _, tt := range cases {
 		t.Run(fmt.Sprintf("%v,%v", tt.in, tt.out), func(t *testing.T) {
-			assert.Equal(t, tt.out, inorderTraversalUsingLoop(tt.in))
+			assert.Equal(t, tt.out, inorderTraversalLoop(tt.in))
 		})
 	}
 }
