@@ -2,21 +2,21 @@ package structures
 
 type Stack[T any] []*T
 
-func (q *Stack[T]) IsEmpty() bool {
-	return len(*q) == 0
+func (s *Stack[T]) IsEmpty() bool {
+	return len(*s) == 0
 }
 
-func (q *Stack[T]) Push(n *T) {
-	*q = append(*q, n)
+func (s *Stack[T]) Push(n *T) {
+	*s = append(*s, n)
 }
 
-func (q *Stack[T]) Pop() (*T, bool) {
-	if q.IsEmpty() {
+func (s *Stack[T]) Pop() (*T, bool) {
+	if s.IsEmpty() {
 		return nil, false
 	}
 
-	node := (*q)[len(*q)-1]
-	*q = (*q)[:len(*q)-1]
+	node := (*s)[len(*s)-1]
+	*s = (*s)[:len(*s)-1]
 
 	return node, true
 }
