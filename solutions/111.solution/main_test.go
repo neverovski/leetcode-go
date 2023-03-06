@@ -61,16 +61,16 @@ var cases = []testCase{
 	},
 }
 
-func BenchmarkMinDepthQueue(b *testing.B) {
+func BenchmarkMinDepthLoop(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		minDepthQueue(cases[0].in)
+		minDepthLoop(cases[0].in)
 	}
 }
 
-func TestMinDepthQueue(t *testing.T) {
+func TestMinDepthLoop(t *testing.T) {
 	for _, tt := range cases {
 		t.Run(fmt.Sprintf("%v,%v", tt.in, tt.out), func(t *testing.T) {
-			assert.Equal(t, tt.out, minDepthQueue(tt.in))
+			assert.Equal(t, tt.out, minDepthLoop(tt.in))
 		})
 	}
 }

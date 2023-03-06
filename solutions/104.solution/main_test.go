@@ -52,9 +52,9 @@ var cases = []testCase{
 	},
 }
 
-func BenchmarkMaxDepthQueue(b *testing.B) {
+func BenchmarkMaxDepthLoop(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		maxDepthQueue(cases[0].in)
+		maxDepthLoop(cases[0].in)
 	}
 }
 
@@ -64,10 +64,10 @@ func BenchmarkMaxDepthRecursive(b *testing.B) {
 	}
 }
 
-func TestMaxDepthQueue(t *testing.T) {
+func TestMaxDepthLoop(t *testing.T) {
 	for _, tt := range cases {
 		t.Run(fmt.Sprintf("%v,%v", tt.in, tt.out), func(t *testing.T) {
-			assert.Equal(t, tt.out, maxDepthQueue(tt.in))
+			assert.Equal(t, tt.out, maxDepthLoop(tt.in))
 		})
 	}
 }

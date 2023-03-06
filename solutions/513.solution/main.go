@@ -3,7 +3,7 @@ package solutions
 import "github.com/neverovski/leetcode-go/structures"
 
 type TreeNode = structures.TreeNode
-type Queue = structures.Queue
+type Queue = structures.Queue[TreeNode]
 
 func findBottomLeftValue(root *TreeNode) int {
 	if root == nil {

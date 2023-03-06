@@ -5,6 +5,7 @@ import (
 )
 
 type TreeNode = structures.TreeNode
+type Stack = structures.Stack[TreeNode]
 
 func inorderTraversalLoop(root *TreeNode) []int {
 	if root == nil {
@@ -12,18 +13,15 @@ func inorderTraversalLoop(root *TreeNode) []int {
 	}
 
 	nums := []int{}
-	arrTree := []*TreeNode{}
+	stack := Stack{}
 
-	for len(arrTree) != 0 || root != nil {
+	for !stack.IsEmpty() || root != nil {
 		if root != nil {
-			arrTree = append(arrTree, root)
+			stack.Push(root)
 			root = root.Left
 		} else {
-			index := len(arrTree) - 1
-
-			if index >= 0 {
-				root = arrTree[index]
-				arrTree = arrTree[:index]
+			if node, ok := stack.Pop(); ok {
+				root = node
 			}
 
 			nums = append(nums, root.Val)

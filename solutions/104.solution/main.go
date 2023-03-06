@@ -5,9 +5,9 @@ import (
 )
 
 type TreeNode = structures.TreeNode
-type Queue = structures.Queue
+type Queue = structures.Queue[TreeNode]
 
-func maxDepthQueue(root *TreeNode) int {
+func maxDepthLoop(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}

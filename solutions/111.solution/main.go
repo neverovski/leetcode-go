@@ -3,9 +3,9 @@ package solutions
 import "github.com/neverovski/leetcode-go/structures"
 
 type TreeNode = structures.TreeNode
-type Queue = structures.Queue
+type Queue = structures.Queue[TreeNode]
 
-func minDepthQueue(root *TreeNode) int {
+func minDepthLoop(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}

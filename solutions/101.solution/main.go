@@ -5,29 +5,24 @@ import (
 )
 
 type TreeNode = structures.TreeNode
+type Stack = structures.Stack[TreeNode]
 
 func isSymmetricLoop(root *TreeNode) bool {
 	if root == nil {
 		return true
 	}
 
-	arrTree := []*TreeNode{root.Left, root.Right}
+	stack := Stack{root.Left, root.Right}
 
-	for len(arrTree) != 0 {
+	for !stack.IsEmpty() {
 		var leftNode *TreeNode
-		indexLeft := len(arrTree) - 1
-
-		if indexLeft >= 0 {
-			leftNode = arrTree[indexLeft]
-			arrTree = arrTree[:indexLeft]
+		if node, ok := stack.Pop(); ok {
+			leftNode = node
 		}
 
 		var rightNode *TreeNode
-		indexRight := len(arrTree) - 1
-
-		if indexRight >= 0 {
-			rightNode = arrTree[indexRight]
-			arrTree = arrTree[:indexRight]
+		if node, ok := stack.Pop(); ok {
+			rightNode = node
 		}
 
 		if leftNode == nil && rightNode == nil {
@@ -38,13 +33,10 @@ func isSymmetricLoop(root *TreeNode) bool {
 			return false
 		}
 
-		arrTree = append(
-			arrTree,
-			leftNode.Left,
-			rightNode.Right,
-			leftNode.Right,
-			rightNode.Left,
-		)
+		stack.Push(leftNode.Left)
+		stack.Push(rightNode.Right)
+		stack.Push(leftNode.Right)
+		stack.Push(rightNode.Left)
 	}
 
 	return true

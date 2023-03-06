@@ -1,16 +1,16 @@
 package structures
 
-type Queue []*TreeNode
+type Queue[T any] []*T
 
-func (q *Queue) IsEmpty() bool {
+func (q *Queue[T]) IsEmpty() bool {
 	return len(*q) == 0
 }
 
-func (q *Queue) Add(n *TreeNode) {
+func (q *Queue[T]) Add(n *T) {
 	*q = append(*q, n)
 }
 
-func (q *Queue) Poll() (*TreeNode, bool) {
+func (q *Queue[T]) Poll() (*T, bool) {
 	if q.IsEmpty() {
 		return nil, false
 	}
