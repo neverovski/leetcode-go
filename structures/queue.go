@@ -6,11 +6,11 @@ func (q *Queue) IsEmpty() bool {
 	return len(*q) == 0
 }
 
-func (q *Queue) Enqueue(n *TreeNode) {
+func (q *Queue) Add(n *TreeNode) {
 	*q = append(*q, n)
 }
 
-func (q *Queue) Dequeue() (*TreeNode, bool) {
+func (q *Queue) Poll() (*TreeNode, bool) {
 	if q.IsEmpty() {
 		return nil, false
 	}

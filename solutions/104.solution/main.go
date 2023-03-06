@@ -5,29 +5,29 @@ import (
 )
 
 type TreeNode = structures.TreeNode
+type Queue = structures.Queue
 
-func maxDepthLoop(root *TreeNode) int {
+func maxDepthQueue(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
 
-	arrTree := []*TreeNode{root}
+	queue := Queue{root}
 	maxDepth := 0
 
-	for len(arrTree) != 0 {
-		size := len(arrTree)
+	for !queue.IsEmpty() {
+		size := len(queue)
 		maxDepth += 1
 
 		for i := 0; i < size; i++ {
-			node := arrTree[0]
-			arrTree = arrTree[1:]
+			if node, ok := queue.Poll(); ok {
+				if node.Left != nil {
+					queue.Add(node.Left)
+				}
 
-			if node.Left != nil {
-				arrTree = append(arrTree, node.Left)
-			}
-
-			if node.Right != nil {
-				arrTree = append(arrTree, node.Right)
+				if node.Right != nil {
+					queue.Add(node.Right)
+				}
 			}
 		}
 	}

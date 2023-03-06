@@ -17,17 +17,17 @@ func minDepthQueue(root *TreeNode) int {
 		size := len(queue)
 
 		for i := 0; i < size; i++ {
-			if node, ok := queue.Dequeue(); ok {
+			if node, ok := queue.Poll(); ok {
 				if node.Left == nil && node.Right == nil {
 					return minDepth
 				}
 
 				if node.Left != nil {
-					queue.Enqueue(node.Left)
+					queue.Add(node.Left)
 				}
 
 				if node.Right != nil {
-					queue.Enqueue(node.Right)
+					queue.Add(node.Right)
 				}
 			}
 		}
