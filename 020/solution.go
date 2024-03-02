@@ -1,7 +1,7 @@
 package solution_020
 
 import (
-	stack "leetcode/go/structures"
+	stack "leetcode/go/utils/stack"
 )
 
 func IsValid(s string) bool {
