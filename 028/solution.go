@@ -1,6 +1,12 @@
 package solution_028
 
-func StrStr(haystack string, needle string) int {
+import "strings"
+
+func strStr(haystack string, needle string) int {
+	if haystack == needle {
+		return 0
+	}
+
 	startIndex := -1
 
 	for i := 0; i < len(haystack); i++ {
@@ -16,5 +22,6 @@ func StrStr(haystack string, needle string) int {
 	return startIndex
 }
 
-// end = 0 + 1 - 1
-// 1 > 1 - false
+func strStrUsingStrings(haystack string, needle string) int {
+	return strings.Index(haystack, needle)
+}
