@@ -16,3 +16,13 @@ func TestRemoveDuplicates(t *testing.T) {
 	a.Equal(0, removeDuplicates([]int{}))
 	a.Equal(4, removeDuplicates([]int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4}))
 }
+
+func BenchmarkRemoveDuplicates(b *testing.B) {
+	nums := []int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4}
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		removeDuplicates(nums)
+	}
+}

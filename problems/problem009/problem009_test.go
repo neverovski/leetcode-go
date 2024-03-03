@@ -19,3 +19,13 @@ func TestIsPalindrome(t *testing.T) {
 	a.Equal(false, isPalindrome(-1), "negative single digit")
 	a.Equal(true, isPalindrome(0), "zero")
 }
+
+func BenchmarkIsPalindrome(b *testing.B) {
+	num := 121
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		isPalindrome(num)
+	}
+}

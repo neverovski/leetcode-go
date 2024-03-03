@@ -17,3 +17,13 @@ func TestLongestCommonPrefix(t *testing.T) {
 	a.Equal("", longestCommonPrefix([]string{"abc", "def", "ghi"}), "no common prefix")
 	a.Equal("", longestCommonPrefix([]string{}), "empty slice")
 }
+
+func BenchmarkLongestCommonPrefix(b *testing.B) {
+	strs := []string{"flower", "flow", "flight"}
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		longestCommonPrefix(strs)
+	}
+}

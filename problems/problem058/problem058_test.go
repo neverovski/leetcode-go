@@ -19,3 +19,13 @@ func TestLengthOfLastWord(t *testing.T) {
 	a.Equal(5, lengthOfLastWord("   Hello   "))
 	a.Equal(5, lengthOfLastWord("Hello   World   "))
 }
+
+func BenchmarkLengthOfLastWord(b *testing.B) {
+	str := "luffy is still joyboy"
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		lengthOfLastWord(str)
+	}
+}

@@ -22,3 +22,13 @@ func TestRomanToInt(t *testing.T) {
 	a.Equal(400, romanToInt("CD"))
 	a.Equal(900, romanToInt("CM"))
 }
+
+func BenchmarkRomanToInt(b *testing.B) {
+	str := "MCMXCIV"
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		romanToInt(str)
+	}
+}

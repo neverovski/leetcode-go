@@ -18,3 +18,14 @@ func TestRemoveElement(t *testing.T) {
 	a.Equal(1, removeElement([]int{1, 2}, 2))
 	a.Equal(1, removeElement([]int{2, 1}, 2))
 }
+
+func BenchmarkRemoveElement(b *testing.B) {
+	nums := []int{0, 1, 2, 2, 3, 0, 4, 2}
+	val := 3
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		removeElement(nums, val)
+	}
+}

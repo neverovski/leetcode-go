@@ -17,3 +17,14 @@ func TestSearchInsert(t *testing.T) {
 	a.Equal(0, searchInsert([]int{}, 0))
 	a.Equal(1, searchInsert([]int{1, 3}, 3))
 }
+
+func BenchmarkSearchInsert(b *testing.B) {
+	nums := []int{1, 3, 5, 6}
+	target := 5
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		searchInsert(nums, target)
+	}
+}
