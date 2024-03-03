@@ -13,4 +13,9 @@ func TestLengthOfLastWord(t *testing.T) {
 	a.Equal(4, lengthOfLastWord("   fly me   to   the moon  "))
 	a.Equal(6, lengthOfLastWord("luffy is still joyboy"))
 	a.Equal(1, lengthOfLastWord("a"))
+	a.Equal(0, lengthOfLastWord(""))
+	a.Equal(0, lengthOfLastWord("   "))
+	a.Equal(5, lengthOfLastWord("Hello"))
+	a.Equal(5, lengthOfLastWord("   Hello   "))
+	a.Equal(5, lengthOfLastWord("Hello   World   "))
 }
