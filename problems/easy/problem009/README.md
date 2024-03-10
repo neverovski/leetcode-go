@@ -1,4 +1,4 @@
-# 9. Palindrome Number
+# [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/)
 
 Given an integer x, return true if x is a palindrome, and false otherwise.
 
@@ -22,4 +22,4 @@ Given an integer x, return true if x is a palindrome, and false otherwise.
 
 **Constraints:**
 
-- `-231 <= x <= 231 - 1`
+- `-2^31 <= x <= 2^31 - 1`
