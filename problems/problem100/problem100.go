@@ -7,7 +7,7 @@ type TreeNode struct {
 }
 
 func isSameTree(p *TreeNode, q *TreeNode) bool {
-	stackP, stackQ := make([]*TreeNode, 0, 5), make([]*TreeNode, 0, 5)
+	stackP, stackQ := []*TreeNode{}, []*TreeNode{}
 
 	currP, currQ := p, q
 
