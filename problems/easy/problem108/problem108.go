@@ -6,6 +6,8 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+const divisor = 2
+
 func sortedArrayToBST(nums []int) *TreeNode {
 	if len(nums) == 0 {
 		return nil
@@ -15,7 +17,7 @@ func sortedArrayToBST(nums []int) *TreeNode {
 		return &TreeNode{Val: nums[0], Left: nil, Right: nil}
 	}
 
-	mid := len(nums) / 2
+	mid := len(nums) / divisor
 
 	return &TreeNode{
 		Val:   nums[mid],

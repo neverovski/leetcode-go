@@ -1,5 +1,7 @@
 package problem009
 
+const base = 10
+
 func isPalindrome(x int) bool {
 	if x < 0 {
 		return false
@@ -9,10 +11,10 @@ func isPalindrome(x int) bool {
 	tempNum := x
 
 	for tempNum > 0 {
-		lastDigit := tempNum % 10
-		reverseNum = reverseNum*10 + lastDigit
+		lastDigit := tempNum % base
+		reverseNum = reverseNum*base + lastDigit
 
-		tempNum /= 10
+		tempNum /= base
 	}
 
 	return reverseNum == x
