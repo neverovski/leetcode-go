@@ -1,21 +1,33 @@
 package problem066
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+type TestCase struct {
+	in  []int
+	out []int
+}
+
 func TestPlusOne(t *testing.T) {
 	a := assert.New(t)
 
-	a.Equal([]int{1, 2, 4}, plusOne([]int{1, 2, 3}))
-	a.Equal([]int{4, 3, 2, 2}, plusOne([]int{4, 3, 2, 1}))
-	a.Equal([]int{1, 0}, plusOne([]int{9}))
-	a.Equal([]int{1, 0, 0}, plusOne([]int{9, 9}))
-	a.Equal([]int{1, 0, 0, 0}, plusOne([]int{9, 9, 9}))
-	a.Equal([]int{9, 0, 0, 0}, plusOne([]int{8, 9, 9, 9}))
-	a.Equal([]int{7, 9, 0, 0}, plusOne([]int{7, 8, 9, 9}))
+	testCases := []TestCase{
+		{in: []int{1, 2, 3}, out: []int{1, 2, 4}},
+		{in: []int{4, 3, 2, 1}, out: []int{4, 3, 2, 2}},
+		{in: []int{9}, out: []int{1, 0}},
+		{in: []int{9, 9}, out: []int{1, 0, 0}},
+		{in: []int{9, 9, 9}, out: []int{1, 0, 0, 0}},
+		{in: []int{8, 9, 9, 9}, out: []int{9, 0, 0, 0}},
+		{in: []int{7, 8, 9, 9}, out: []int{7, 9, 0, 0}},
+	}
+
+	for key, tc := range testCases {
+		a.Equal(tc.out, plusOne(tc.in), fmt.Sprintf("TestPlusOne number # %d", key+1))
+	}
 }
 
 func BenchmarkPlusOne(b *testing.B) {

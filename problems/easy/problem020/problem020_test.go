@@ -1,23 +1,39 @@
 package problem020
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+type TestCase struct {
+	in  string
+	out bool
+}
+
 func TestIsValid(t *testing.T) {
 	a := assert.New(t)
 
-	a.Equal(true, isValid("[]"))
-	a.Equal(true, isValid("[]{}[]"))
-	a.Equal(false, isValid("[)"))
-	a.Equal(true, isValid("[()]"))
-	a.Equal(false, isValid("["))
-	a.Equal(false, isValid("[["))
-	a.Equal(false, isValid("]"))
-	a.Equal(false, isValid(")(){}"))
-	a.Equal(false, isValid("(])"))
+	testCases := []TestCase{
+		{in: "()", out: true},
+		{in: "()[]{}", out: true},
+		{in: "(]", out: false},
+		{in: "([)]", out: false},
+		{in: "{[]}", out: true},
+		{in: "", out: false},
+		{in: "[]{}[]", out: true},
+		{in: "[()]", out: true},
+		{in: "[)", out: false},
+		{in: "[", out: false},
+		{in: "[[", out: false},
+		{in: ")(){}", out: false},
+		{in: "(])", out: false},
+	}
+
+	for key, tc := range testCases {
+		a.Equal(tc.out, isValid(tc.in), fmt.Sprintf("TestIsValid number # %d", key+1))
+	}
 }
 
 func BenchmarkIsValid(b *testing.B) {

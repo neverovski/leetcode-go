@@ -1,11 +1,13 @@
 package problem035
 
+const DIVISOR = 2
+
 // use binary search
 func searchInsert(nums []int, target int) int {
 	left, right := 0, len(nums)-1
 
 	for left <= right {
-		mid := left + (right-left)/2
+		mid := left + (right-left)/DIVISOR
 
 		if nums[mid] == target {
 			return mid

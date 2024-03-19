@@ -10,7 +10,7 @@ func removeDuplicates(nums []int) int {
 	for i := 1; i < len(nums); i++ {
 		if nums[i] != nums[i-1] {
 			nums[key] = nums[i]
-			key += 1
+			key++
 		}
 	}
 

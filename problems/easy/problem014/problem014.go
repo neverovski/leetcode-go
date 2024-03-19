@@ -9,6 +9,14 @@ func longestCommonPrefix(strs []string) string {
 		return strs[0]
 	}
 
+	if len(strs) == 1 {
+		return strs[0]
+	}
+
+	return findCommonPrefix(strs)
+}
+
+func findCommonPrefix(strs []string) string {
 	prefix := strs[0]
 
 	for i := 1; i < len(strs); i++ {

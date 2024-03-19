@@ -1,18 +1,30 @@
 package problem069
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+type TestCase struct {
+	in  int
+	out int
+}
+
 func TestMySqrt(t *testing.T) {
 	a := assert.New(t)
 
-	a.Equal(1, mySqrt(1))
-	a.Equal(0, mySqrt(0))
-	a.Equal(2, mySqrt(8))
-	a.Equal(2, mySqrt(4))
-	a.Equal(3, mySqrt(9))
-	a.Equal(15, mySqrt(225))
+	testCases := []TestCase{
+		{in: 1, out: 1},
+		{in: 0, out: 0},
+		{in: 8, out: 2},
+		{in: 4, out: 2},
+		{in: 9, out: 3},
+		{in: 225, out: 15},
+	}
+
+	for key, tc := range testCases {
+		a.Equal(tc.out, mySqrt(tc.in), fmt.Sprintf("TestMySqrt number # %d", key+1))
+	}
 }

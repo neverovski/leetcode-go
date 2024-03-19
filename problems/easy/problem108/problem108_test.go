@@ -1,21 +1,24 @@
 package problem108
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+type TestCase struct {
+	in  []int
+	out *TreeNode
+}
+
 func TestSortedArrayToBST(t *testing.T) {
 	a := assert.New(t)
 
-	tests := []struct {
-		input  []int
-		output *TreeNode
-	}{
+	testCases := []TestCase{
 		{
-			input: []int{-10, -3, 0, 5, 9},
-			output: &TreeNode{
+			in: []int{-10, -3, 0, 5, 9},
+			out: &TreeNode{
 				Val: 0,
 				Left: &TreeNode{
 					Val:  -3,
@@ -28,15 +31,15 @@ func TestSortedArrayToBST(t *testing.T) {
 			},
 		},
 		{
-			input: []int{1, 3},
-			output: &TreeNode{
+			in: []int{1, 3},
+			out: &TreeNode{
 				Val:  3,
 				Left: &TreeNode{Val: 1},
 			},
 		},
 		{
-			input: []int{0, 1, 2, 3, 4, 5, 6},
-			output: &TreeNode{
+			in: []int{0, 1, 2, 3, 4, 5, 6},
+			out: &TreeNode{
 				Val: 3,
 				Left: &TreeNode{
 					Val:   1,
@@ -52,7 +55,7 @@ func TestSortedArrayToBST(t *testing.T) {
 		},
 	}
 
-	for _, tt := range tests {
-		a.Equal(tt.output, sortedArrayToBST(tt.input))
+	for key, tc := range testCases {
+		a.Equal(tc.out, sortedArrayToBST(tc.in), fmt.Sprintf("TestSortedArrayToBST number # %d", key+1))
 	}
 }

@@ -30,9 +30,12 @@ func deleteDuplicatesUsingTwoList(listIn *ListNode) *ListNode {
 
 	listOut := &ListNode{Val: listIn.Val}
 
-	currentIn := listIn
-	currentOut := listOut
+	processList(listIn, listOut)
 
+	return listOut
+}
+
+func processList(currentIn, currentOut *ListNode) {
 	for currentIn != nil {
 		if currentIn.Val != currentOut.Val {
 			currentOut.Next = &ListNode{Val: currentIn.Val}
@@ -42,6 +45,4 @@ func deleteDuplicatesUsingTwoList(listIn *ListNode) *ListNode {
 
 		currentIn = currentIn.Next
 	}
-
-	return listOut
 }

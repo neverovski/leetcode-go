@@ -1,20 +1,32 @@
 package problem026
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+type TestCase struct {
+	in  []int
+	out int
+}
+
 func TestRemoveDuplicates(t *testing.T) {
 	a := assert.New(t)
 
-	a.Equal(2, removeDuplicates([]int{1, 1, 2}))
-	a.Equal(5, removeDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}))
-	a.Equal(1, removeDuplicates([]int{1, 1, 1, 1, 1}))
-	a.Equal(3, removeDuplicates([]int{1, 2, 3}))
-	a.Equal(0, removeDuplicates([]int{}))
-	a.Equal(4, removeDuplicates([]int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4}))
+	testCases := []TestCase{
+		{in: []int{1, 1, 2}, out: 2},
+		{in: []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}, out: 5},
+		{in: []int{1, 1, 1, 1, 1}, out: 1},
+		{in: []int{1, 2, 3}, out: 3},
+		{in: []int{}, out: 0},
+		{in: []int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4}, out: 4},
+	}
+
+	for key, tc := range testCases {
+		a.Equal(tc.out, removeDuplicates(tc.in), fmt.Sprintf("TestRemoveDuplicates number # %d", key+1))
+	}
 }
 
 func BenchmarkRemoveDuplicates(b *testing.B) {

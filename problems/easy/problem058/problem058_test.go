@@ -1,23 +1,35 @@
 package problem058
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+type TestCase struct {
+	in  string
+	out int
+}
+
 func TestLengthOfLastWord(t *testing.T) {
 	a := assert.New(t)
 
-	a.Equal(5, lengthOfLastWord("Hello World"))
-	a.Equal(4, lengthOfLastWord("   fly me   to   the moon  "))
-	a.Equal(6, lengthOfLastWord("luffy is still joyboy"))
-	a.Equal(1, lengthOfLastWord("a"))
-	a.Equal(0, lengthOfLastWord(""))
-	a.Equal(0, lengthOfLastWord("   "))
-	a.Equal(5, lengthOfLastWord("Hello"))
-	a.Equal(5, lengthOfLastWord("   Hello   "))
-	a.Equal(5, lengthOfLastWord("Hello   World   "))
+	testCases := []TestCase{
+		{in: "Hello World", out: 5},
+		{in: "   fly me   to   the moon  ", out: 4},
+		{in: "luffy is still joyboy", out: 6},
+		{in: "a", out: 1},
+		{in: "", out: 0},
+		{in: "   ", out: 0},
+		{in: "Hello", out: 5},
+		{in: "   Hello   ", out: 5},
+		{in: "Hello   World   ", out: 5},
+	}
+
+	for key, tc := range testCases {
+		a.Equal(tc.out, lengthOfLastWord(tc.in), fmt.Sprintf("TestLengthOfLastWord number # %d", key+1))
+	}
 }
 
 func BenchmarkLengthOfLastWord(b *testing.B) {

@@ -1,24 +1,37 @@
 package problem067
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+type TestCase struct {
+	a   string
+	b   string
+	out string
+}
+
 func TestAddBinary(t *testing.T) {
 	a := assert.New(t)
 
-	a.Equal("100", addBinary("11", "1"))
-	a.Equal("10110", addBinary("1011", "1011"))
-	a.Equal("10101", addBinary("1010", "1011"))
-	a.Equal("10000", addBinary("101", "1011"))
-	a.Equal("10001", addBinary("1", "10000"))
-	a.Equal("0", addBinary("0", "0"))
-	a.Equal("1", addBinary("0", "1"))
-	a.Equal("10", addBinary("1", "1"))
-	a.Equal("110", addBinary("11", "11"))
-	a.Equal("1000", addBinary("111", "1"))
+	testCases := []TestCase{
+		{a: "11", b: "1", out: "100"},
+		{a: "1011", b: "1011", out: "10110"},
+		{a: "1010", b: "1011", out: "10101"},
+		{a: "101", b: "1011", out: "10000"},
+		{a: "1", b: "10000", out: "10001"},
+		{a: "0", b: "0", out: "0"},
+		{a: "0", b: "1", out: "1"},
+		{a: "1", b: "1", out: "10"},
+		{a: "11", b: "11", out: "110"},
+		{a: "111", b: "1", out: "1000"},
+	}
+
+	for key, tc := range testCases {
+		a.Equal(tc.out, addBinary(tc.a, tc.b), fmt.Sprintf("TestAddBinary number # %d", key+1))
+	}
 }
 
 func BenchmarkAddBinary(b *testing.B) {

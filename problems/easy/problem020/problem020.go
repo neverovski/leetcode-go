@@ -1,11 +1,11 @@
 package problem020
 
-import (
-	stack "leetcode/go/utils/stack"
-)
+import "leetcode/go/utils/stack"
+
+const DIVISOR = 2
 
 func isValid(s string) bool {
-	if len(s) == 0 || len(s)%2 == 1 {
+	if len(s) == 0 || len(s)%DIVISOR == 1 {
 		return false
 	}
 
@@ -16,6 +16,10 @@ func isValid(s string) bool {
 	}
 	symbolStack := stack.New()
 
+	return processSymbols(s, pattern, symbolStack)
+}
+
+func processSymbols(s string, pattern map[byte]byte, symbolStack *stack.Stack) bool {
 	for i := 0; i < len(s); i++ {
 		if _, ok := pattern[s[i]]; ok {
 			symbolStack.Push(s[i])

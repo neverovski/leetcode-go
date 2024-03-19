@@ -1,21 +1,33 @@
 package problem014
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+type TestCase struct {
+	in  []string
+	out string
+}
+
 func TestLongestCommonPrefix(t *testing.T) {
 	a := assert.New(t)
 
-	a.Equal("fl", longestCommonPrefix([]string{"flower", "flow", "flight"}))
-	a.Equal("", longestCommonPrefix([]string{"dog", "racecar", "car"}))
-	a.Equal("a", longestCommonPrefix([]string{"abc", "a", "ab"}), "one string is a prefix of the others")
-	a.Equal("", longestCommonPrefix([]string{"", "b", "c"}), "one string is empty")
-	a.Equal("abc", longestCommonPrefix([]string{"abc", "abc", "abc"}), "all strings are the same")
-	a.Equal("", longestCommonPrefix([]string{"abc", "def", "ghi"}), "no common prefix")
-	a.Equal("", longestCommonPrefix([]string{}), "empty slice")
+	testCases := []TestCase{
+		{in: []string{"flower", "flow", "flight"}, out: "fl"},
+		{in: []string{"dog", "racecar", "car"}, out: ""},
+		{in: []string{"abc", "a", "ab"}, out: "a"},
+		{in: []string{"", "b", "c"}, out: ""},
+		{in: []string{"abc", "abc", "abc"}, out: "abc"},
+		{in: []string{"abc", "def", "ghi"}, out: ""},
+		{in: []string{}, out: ""},
+	}
+
+	for key, tc := range testCases {
+		a.Equal(tc.out, longestCommonPrefix(tc.in), fmt.Sprintf("TestLongestCommonPrefix number # %d", key+1))
+	}
 }
 
 func BenchmarkLongestCommonPrefix(b *testing.B) {

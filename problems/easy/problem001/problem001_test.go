@@ -1,22 +1,35 @@
 package problem001
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+type TestCase struct {
+	nums   []int
+	target int
+	out    []int
+}
+
 func TestTwoSum(t *testing.T) {
 	a := assert.New(t)
 
-	a.ElementsMatch([]int{0, 1}, twoSum([]int{2, 7, 11, 15}, 9))
-	a.ElementsMatch([]int{1, 2}, twoSum([]int{3, 2, 4}, 6))
-	a.ElementsMatch([]int{0, 1}, twoSum([]int{3, 3}, 6))
-	a.ElementsMatch([]int{1, 2}, twoSum([]int{1, 2, 3, 4}, 5))
-	a.ElementsMatch([]int{2, 4}, twoSum([]int{1, 1, 2, 3, 4}, 6))
-	a.ElementsMatch([]int{1, 2}, twoSum([]int{-1, -2, -3, -4}, -5))
-	a.ElementsMatch([]int{0, 1}, twoSum([]int{0, 0, 0}, 0))
-	a.ElementsMatch([]int{}, twoSum([]int{1, 2, 3, 4}, 10))
+	testCases := []TestCase{
+		{nums: []int{2, 7, 11, 15}, target: 9, out: []int{0, 1}},
+		{nums: []int{3, 2, 4}, target: 6, out: []int{1, 2}},
+		{nums: []int{3, 3}, target: 6, out: []int{0, 1}},
+		{nums: []int{1, 2, 3, 4}, target: 5, out: []int{1, 2}},
+		{nums: []int{1, 1, 2, 3, 4}, target: 6, out: []int{2, 4}},
+		{nums: []int{-1, -2, -3, -4}, target: -5, out: []int{1, 2}},
+		{nums: []int{0, 0, 0}, target: 0, out: []int{0, 1}},
+		{nums: []int{1, 2, 3, 4}, target: 10, out: []int{}},
+	}
+
+	for key, tc := range testCases {
+		a.ElementsMatch(tc.out, twoSum(tc.nums, tc.target), fmt.Sprintf("TestTwoSum number # %d", key+1))
+	}
 }
 
 func BenchmarkTwoSum(b *testing.B) {

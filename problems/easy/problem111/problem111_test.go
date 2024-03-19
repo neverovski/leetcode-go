@@ -7,13 +7,15 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+type TestCase struct {
+	in  *TreeNode
+	out int
+}
+
 func TestMinDepth(t *testing.T) {
 	a := assert.New(t)
 
-	tests := []struct {
-		in  *TreeNode
-		out int
-	}{
+	testCases := []TestCase{
 		{
 			in: &TreeNode{
 				Val: 0,
@@ -62,7 +64,7 @@ func TestMinDepth(t *testing.T) {
 		},
 	}
 
-	for key, tt := range tests {
-		a.Equal(tt.out, minDepth(tt.in), fmt.Sprintf("Test case number # %d", key+1))
+	for key, tc := range testCases {
+		a.Equal(tc.out, minDepth(tc.in), fmt.Sprintf("TestMinDepth number # %d", key+1))
 	}
 }

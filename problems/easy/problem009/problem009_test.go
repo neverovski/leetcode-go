@@ -1,23 +1,35 @@
 package problem009
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+type TestCase struct {
+	in  int
+	out bool
+}
+
 func TestIsPalindrome(t *testing.T) {
 	a := assert.New(t)
 
-	a.Equal(true, isPalindrome(121))
-	a.Equal(false, isPalindrome(10))
-	a.Equal(false, isPalindrome(-123))
-	a.Equal(true, isPalindrome(5))
-	a.Equal(true, isPalindrome(1221), "even number of digits")
-	a.Equal(false, isPalindrome(1231), "not a palindrome")
-	a.Equal(true, isPalindrome(1), "single digit")
-	a.Equal(false, isPalindrome(-1), "negative single digit")
-	a.Equal(true, isPalindrome(0), "zero")
+	testCases := []TestCase{
+		{in: 121, out: true},
+		{in: 10, out: false},
+		{in: -123, out: false},
+		{in: 5, out: true},
+		{in: 1221, out: true},
+		{in: 1231, out: false},
+		{in: 1, out: true},
+		{in: -1, out: false},
+		{in: 0, out: true},
+	}
+
+	for key, tc := range testCases {
+		a.Equal(tc.out, isPalindrome(tc.in), fmt.Sprintf("TestIsPalindrome number # %d", key+1))
+	}
 }
 
 func BenchmarkIsPalindrome(b *testing.B) {

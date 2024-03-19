@@ -1,37 +1,56 @@
 package problem028
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+type TestCase struct {
+	haystack string
+	needle   string
+	out      int
+}
+
 func TestStrStr(t *testing.T) {
 	a := assert.New(t)
 
-	a.Equal(0, strStr("sadbutsad", "sad"))
-	a.Equal(-1, strStr("leetcode", "leeto"))
-	a.Equal(2, strStr("hello", "ll"))
-	a.Equal(0, strStr("a", "a"))
-	a.Equal(-1, strStr("hello", "world"))
-	a.Equal(0, strStr("hello", ""))
-	a.Equal(-1, strStr("", "hello"))
-	a.Equal(0, strStr("", ""))
-	a.Equal(6, strStr("mississippi", "sip"))
+	testCases := []TestCase{
+		{haystack: "sadbutsad", needle: "sad", out: 0},
+		{haystack: "leetcode", needle: "leeto", out: -1},
+		{haystack: "hello", needle: "ll", out: 2},
+		{haystack: "a", needle: "a", out: 0},
+		{haystack: "hello", needle: "world", out: -1},
+		{haystack: "hello", needle: "", out: 0},
+		{haystack: "", needle: "hello", out: -1},
+		{haystack: "", needle: "", out: 0},
+		{haystack: "mississippi", needle: "sip", out: 6},
+	}
+
+	for key, tc := range testCases {
+		a.Equal(tc.out, strStr(tc.haystack, tc.needle), fmt.Sprintf("TestStrStr number # %d", key+1))
+	}
 }
 
 func TestStrStrUsingStrings(t *testing.T) {
 	a := assert.New(t)
 
-	a.Equal(0, strStrUsingStrings("sadbutsad", "sad"))
-	a.Equal(-1, strStrUsingStrings("leetcode", "leeto"))
-	a.Equal(2, strStrUsingStrings("hello", "ll"))
-	a.Equal(0, strStrUsingStrings("a", "a"))
-	a.Equal(-1, strStrUsingStrings("hello", "world"))
-	a.Equal(0, strStrUsingStrings("hello", ""))
-	a.Equal(-1, strStrUsingStrings("", "hello"))
-	a.Equal(0, strStrUsingStrings("", ""))
-	a.Equal(6, strStrUsingStrings("mississippi", "sip"))
+	testCases := []TestCase{
+		{haystack: "sadbutsad", needle: "sad", out: 0},
+		{haystack: "leetcode", needle: "leeto", out: -1},
+		{haystack: "hello", needle: "ll", out: 2},
+		{haystack: "a", needle: "a", out: 0},
+		{haystack: "hello", needle: "world", out: -1},
+		{haystack: "hello", needle: "", out: 0},
+		{haystack: "", needle: "hello", out: -1},
+		{haystack: "", needle: "", out: 0},
+		{haystack: "mississippi", needle: "sip", out: 6},
+	}
+
+	for key, tc := range testCases {
+		a.Equal(tc.out, strStrUsingStrings(tc.haystack, tc.needle), fmt.Sprintf("TestStrStrUsingStrings number # %d", key+1))
+	}
 }
 
 func BenchmarkStrStr(b *testing.B) {
