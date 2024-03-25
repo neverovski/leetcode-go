@@ -18,10 +18,3 @@ func getRow(rowIndex int) []int {
 
 	return res[rowIndex]
 }
-
-// O(n)
-func getRowFast(rowIndex int) []int {
-	// implement
-
-	return []int{}
-}

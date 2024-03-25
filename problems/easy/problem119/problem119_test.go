@@ -15,10 +15,6 @@ type TestCase struct {
 func TestGetRow(t *testing.T) {
 	a := assert.New(t)
 
-	a.Equal([]int{1}, getRow(0))
-	a.Equal([]int{1, 1}, getRow(1))
-	a.Equal([]int{1, 3, 3, 1}, getRow(3))
-
 	testCases := []TestCase{
 		{
 			in:  0,
@@ -44,5 +40,11 @@ func TestGetRow(t *testing.T) {
 
 	for key, tc := range testCases {
 		a.Equal(tc.out, getRow(tc.in), fmt.Sprintf("TestGetRow number # %d", key+1))
+	}
+}
+
+func BenchmarkGetRow(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		getRow(7)
 	}
 }
