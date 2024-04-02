@@ -1,4 +1,4 @@
-package problem144
+package problem145
 
 type TreeNode struct {
 	Val   int
@@ -6,33 +6,33 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func preorderTraversal(root *TreeNode) []int {
+func postorderTraversal(root *TreeNode) []int {
 	if root == nil {
 		return []int{}
 	}
 
-	nums := append([]int{root.Val}, preorderTraversal(root.Left)...)
-	nums = append(nums, preorderTraversal(root.Right)...)
+	nums := append(postorderTraversal(root.Left), postorderTraversal(root.Right)...)
+	nums = append(nums, root.Val)
 
 	return nums
 }
 
-func preorderTraversalUsingSlice(root *TreeNode) []int {
+func postorderTraversalUsingSlice(root *TreeNode) []int {
 	stack := make([]*TreeNode, 0)
 	nums := make([]int, 0)
 
 	for root != nil || len(stack) > 0 {
 		for root != nil {
-			nums = append(nums, root.Val)
+			nums = append([]int{root.Val}, nums...)
 			stack = append(stack, root)
 
-			root = root.Left
+			root = root.Right
 		}
 
 		root = stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
 
-		root = root.Right
+		root = root.Left
 	}
 	return nums
 }

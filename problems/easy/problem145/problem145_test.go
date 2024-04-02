@@ -1,4 +1,4 @@
-package problem144
+package problem145
 
 import (
 	"fmt"
@@ -12,13 +12,13 @@ type TestCase struct {
 	out []int
 }
 
-func TestPreorderTraversal(t *testing.T) {
+func TestPostorderTraversal(t *testing.T) {
 	a := assert.New(t)
 
 	testCases := []TestCase{
 		{
 			in:  &TreeNode{Val: 1, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 3}}},
-			out: []int{1, 2, 3},
+			out: []int{3, 2, 1},
 		},
 		{
 			in:  nil,
@@ -31,17 +31,17 @@ func TestPreorderTraversal(t *testing.T) {
 	}
 
 	for key, tc := range testCases {
-		a.Equal(tc.out, preorderTraversal(tc.in), fmt.Sprintf("TestPreorderTraversal number # %d", key+1))
+		a.Equal(tc.out, postorderTraversal(tc.in), fmt.Sprintf("TestPostorderTraversal number # %d", key+1))
 	}
 }
 
-func TestPreorderTraversalUsingSlice(t *testing.T) {
+func TestPostorderTraversalUsingSlice(t *testing.T) {
 	a := assert.New(t)
 
 	testCases := []TestCase{
 		{
 			in:  &TreeNode{Val: 1, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 3}}},
-			out: []int{1, 2, 3},
+			out: []int{3, 2, 1},
 		},
 		{
 			in:  nil,
@@ -54,22 +54,22 @@ func TestPreorderTraversalUsingSlice(t *testing.T) {
 	}
 
 	for key, tc := range testCases {
-		a.Equal(tc.out, preorderTraversalUsingSlice(tc.in), fmt.Sprintf("TestPreorderTraversalUsingSlice number # %d", key+1))
+		a.Equal(tc.out, postorderTraversalUsingSlice(tc.in), fmt.Sprintf("TestPostorderTraversalUsingSlice number # %d", key+1))
 	}
 }
 
-func BenchmarkPreorderTraversal(b *testing.B) {
+func BenchmarkPostorderTraversal(b *testing.B) {
 	node := &TreeNode{Val: 1, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 3}}}
 
 	for i := 0; i < b.N; i++ {
-		preorderTraversal(node)
+		postorderTraversal(node)
 	}
 }
 
-func BenchmarkPreorderTraversalUsingSlice(b *testing.B) {
+func BenchmarkPostorderTraversalUsingSlice(b *testing.B) {
 	node := &TreeNode{Val: 1, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 3}}}
 
 	for i := 0; i < b.N; i++ {
-		preorderTraversalUsingSlice(node)
+		postorderTraversalUsingSlice(node)
 	}
 }
